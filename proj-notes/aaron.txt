@@ -1,0 +1,7 @@
+I set up the folder structure. The main directory is /mod-3-proj.
+This folder contains /frontend and /backend folder. The /backend contains
+the rails api which is called /mod-3-proj-api. For the api I uncommented the
+cors gem, ran the bundler, and added the neccesary code in the config/application.rb
+file on lines 27-35.
+I used this for a reference:
+https://learning.flatironschool.com/courses/1522/pages/creating-a-rails-api-from-scratch?module_item_id=114827
