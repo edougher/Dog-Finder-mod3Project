@@ -18,21 +18,13 @@ api_key = 'b381884d-c35c-45db-9b63-da84c9d8d80e'
 #url = 'https://api.thedogapi.com/v1/images?api_key=b381884d-c35c-45db-9b63-da84c9d8d80e'
 url = 'https://api.thedogapi.com/v1/images/search'
 response = RestClient.get(url)
-<<<<<<< HEAD
 
 parsed_body = JSON.parse(response)
 binding.pry
 
 10.times 
 
-def functionName(parsed_body){
-    breedName = parsed_body[0]["name"]
 
-    Animal.create(name: breed image)
-}
-=======
-JSON.parse(response)
-binding.pry
 
 
 
@@ -52,4 +44,3 @@ binding.pry
 
 Faker::Creature::Dog.name
 Faker::Creature::Dog.age
->>>>>>> faker
