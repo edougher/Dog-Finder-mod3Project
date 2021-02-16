@@ -1,5 +1,5 @@
 
-fire = () =>{
+start = () =>{
 generateHeader()
 createCardContainer()
 generateRandomDog()
@@ -8,10 +8,10 @@ createCardContainer = () => {
     const main = document.querySelector('main')
     const cardContainer = `
     <div class="py-5">
-    <div class="container">
-    <div class="row hidden-md-up">
-    </div>
-    </div>
+     <div class="container">
+      <div class="row hidden-md-up">
+      </div>
+     </div>
     </div
     `
     main.innerHTML = cardContainer
@@ -22,14 +22,14 @@ createCard = (dog) => {
     const cardContainer = document.querySelector('div.row.hidden-md-up')
     const card = `
     <div class="col-md-4">
-    <div class="card" >
-    <div class="card-block">
-    <img class="card-img-top" src="${dog.message}" alt="Card image cap">
-    <div class="card-body">
-    <p class="card-text">Where info can go.</p>
-    </div>
-    </div>
-    </div>
+     <div class="card" >
+      <div class="card-block">
+       <img class="card-img-top" src="${dog.message}" alt="Card image cap">
+        <div class="card-body">
+         <p class="card-text">Where info can go.</p>
+        </div>
+      </div>
+     </div>
     </div>
     `
     cardContainer.innerHTML += card 
@@ -89,7 +89,7 @@ generateHeader = () => {
     const body = document.querySelector('body')
     body.innerHTML = header
 }
-//fire()
+start()
 
 
 
