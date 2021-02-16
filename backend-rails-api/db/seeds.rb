@@ -31,6 +31,9 @@ end
     User.create(name: Faker::FunnyName.name, age: Faker::Number.within(range: 15..99), location: Faker::Movies::LordOfTheRings.location)
 end
 
+like_a = Like.create(animal_id: 1, user_id: 1)
+like_b = Like.create(animal_id: 2, user_id: 2)
+like_c = Like.create(animal_id: 4, user_id: 3)
+like_d = Like.create(animal_id: 4, user_id: 4)
+like_e = Like.create(animal_id: 8, user_id: 5)
 
-Faker::Creature::Dog.name
-Faker::Creature::Dog.age
