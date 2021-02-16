@@ -70,11 +70,7 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.10.0)
-<<<<<<< HEAD
     faker (2.15.1)
-=======
-    faker (2.16.0)
->>>>>>> 6cb1c2308cfdded7108f66daa4a84a1075b2b16e
       i18n (>= 1.6, < 2)
     ffi (1.14.2)
     globalid (0.4.2)
