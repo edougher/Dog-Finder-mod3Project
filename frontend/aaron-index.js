@@ -89,7 +89,7 @@ generateHeader = () => {
     const body = document.querySelector('body')
     body.innerHTML = header
 }
-start()
+
 
 
 
