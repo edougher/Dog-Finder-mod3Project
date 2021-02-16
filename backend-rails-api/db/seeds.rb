@@ -12,23 +12,24 @@ require 'json'
 require 'pry'
 require 'faker'
 
+Animal.destroy_all
+User.destroy_all
 
+#api_key = 'b381884d-c35c-45db-9b63-da84c9d8d80e'
 
+10.times do 
+    url = 'https://api.thedogapi.com/v1/images/search?api_key=b381884d-c35c-45db-9b63-da84c9d8d80e'
+    response = RestClient.get(url)
+    parsed_body = JSON.parse(response)
+    # binding.pry
+    # breedName = parsed_body[0]["breeds"][0]["name"]
+    dogImage = parsed_body[0]["url"]
+    Animal.create(name: Faker::Creature::Dog.name, breed: Faker::Creature::Dog.breed, image: dogImage)
+end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+5.times do
+    User.create(name: Faker::FunnyName.name, age: Faker::Number.within(range: 15..99), location: Faker::Movies::LordOfTheRings.location)
+end
 
 
 Faker::Creature::Dog.name
