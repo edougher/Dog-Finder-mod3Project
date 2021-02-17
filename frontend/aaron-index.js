@@ -1,11 +1,16 @@
 
-start = () =>{
-
+startHome = () =>{
 navBar()
 header()
 homePageSlideShow()
 getDogsForSlideShow()
 
+}
+
+startCardsIndex = () => {
+navBar()
+createCardContainer()
+generateDog()
 }
 //homepage below
 navBar = () => {
@@ -21,6 +26,8 @@ navBar = () => {
       </div>
     </div>
   </div>
+  <main>
+  </main>
     `
     const body = document.querySelector('body')
     body.innerHTML = navBar
@@ -96,8 +103,6 @@ function carouselFunc() {
     setTimeout(carouselFunc, 2500); // Change image every 2 seconds
 }
 }
-
-start()
 
 
 //homepage above
