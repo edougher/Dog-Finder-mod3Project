@@ -130,7 +130,7 @@ createCard = (dog) => {
     const card = `
     <div class="col-md-4">
      <div class="card" >
-      <div class="card-block">
+      <div class="card-block" data-dog="${dog.id}">
        <img class="card-img-top" src="${dog.image}" alt="Card image cap">
         <div class="card-body">
          <p class="card-text">${dog.name}</p>
@@ -155,6 +155,7 @@ generateDog = () => {
         })
 }
 
+startCardsIndex()
 
 
 
