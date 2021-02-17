@@ -1,9 +1,109 @@
 
 start = () =>{
-generateHeader()
-createCardContainer()
-generateRandomDog()
+
+navBar()
+header()
+homePageSlideShow()
+getDogsForSlideShow()
+
 }
+//homepage below
+navBar = () => {
+    const navBar = `
+    <div class="w3-top">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+      <a href="#home" class="w3-bar-item w3-button"><b>DOG</b>Finder</a>
+      <!-- Float links to the right. Hide them on small screens -->
+      <div class="w3-right w3-hide-small">
+        <a href="#projects" class="w3-bar-item w3-button">Home</a>
+        <a href="#about" class="w3-bar-item w3-button">Animals</a>
+        <a href="#contact" class="w3-bar-item w3-button">IDK YET</a>
+      </div>
+    </div>
+  </div>
+    `
+    const body = document.querySelector('body')
+    body.innerHTML = navBar
+    console.log(1)
+    
+}
+
+header = () => {
+    const header = `
+    <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+        <img class="w3-image" src="/Users/aaron/Flatiron/javascript/mod-3-proj/frontend/resources/images/juan-manuel-nunez-lvpV017SZao-unsplash.jpg" alt="" width="1500" height="800">
+      <div class="w3-display-middle w3-margin-top w3-center">
+        <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>DOG</b></span> <span class="w3-hide-small w3-text-light-grey">Finder</span></h1>
+      </div>
+  </header>
+    `
+    const body = document.querySelector('body')
+    body.innerHTML += header
+    console.log(2)
+}
+
+
+homePageSlideShow = () => {
+const body = document.querySelector('body')
+const cardDiv = `
+<div class="w3-content w3-padding" style="max-width:1564px">
+ <div class="w3-container w3-padding-32" id="projects">
+  <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Dogs</h3>
+ </div>
+<div id="carousel" class="w3-content w3-section" style="max-width:500px">
+</div>
+`
+body.innerHTML += cardDiv
+
+console.log(3)
+}
+
+getDogsForSlideShow = () =>{
+    
+    let i = 0
+    do {
+    fetch('https://dog.ceo/api/breeds/image/random')
+    .then(resp => resp.json())
+    .then(dogData => {
+        createImg(dogData.message) 
+        
+    })
+    i++
+    }
+    while(i < 10)
+    
+    console.log(4) 
+
+}
+createImg = (dogImg) => {
+    //console.log(dogImg)
+    const carousel = document.querySelector('div#carousel')
+    let img = `<img class="mySlides" src="${dogImg}" style="width:100%">`
+    carousel.innerHTML += img
+
+    var slideIndex = 0;
+carouselFunc();
+
+function carouselFunc() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1}
+    x[slideIndex-1].style.display = "block";
+    setTimeout(carouselFunc, 2500); // Change image every 2 seconds
+}
+}
+
+start()
+
+
+//homepage above
+
+
+//card deck page below
 createCardContainer = () => {
     const main = document.querySelector('main')
     const cardContainer = `
@@ -15,6 +115,8 @@ createCardContainer = () => {
     </div
     `
     main.innerHTML = cardContainer
+    const container = document.querySelector('div.row.hidden-md-up')
+
 }
 
 
@@ -24,9 +126,9 @@ createCard = (dog) => {
     <div class="col-md-4">
      <div class="card" >
       <div class="card-block">
-       <img class="card-img-top" src="${dog.message}" alt="Card image cap">
+       <img class="card-img-top" src="${dog.image}" alt="Card image cap">
         <div class="card-body">
-         <p class="card-text">Where info can go.</p>
+         <p class="card-text">${dog.name}</p>
         </div>
       </div>
      </div>
@@ -36,59 +138,48 @@ createCard = (dog) => {
     
 }
 
-generateRandomDog = () => {
-    let randomDogs = []
-    for (let i = 0; i < 10; i++){
-        fetch('https://dog.ceo/api/breeds/image/random')
+generateDog = () => {
+    fetch('http://localhost:3000/animals')
         .then(resp => resp.json())
-        .then(dog => {
-            createCard(dog)
+        .then(dogs => {
+            dogs.forEach(dog => {
+               createCard(dog)
+                 
+            });
             
         })
-    }
-    
 }
 
-generateHeader = () => {
-    const header = `
-    <header>
-    <div class="bg-dark collapse show" id="navbarHeader" style="">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-8 col-md-7 py-4">
-                <h4 class="text-white">What is this</h4>
-                <p class="text-muted">Blah Blah Blah Blah.</p>
-              </div>
-              <div class="col-sm-4 offset-md-1 py-4">
-                <h4 class="text-white">Contact</h4>
-                <ul class="list-unstyled">
-                  <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                  <li><a href="#" class="text-white">Like on Facebook</a></li>
-                  <li><a href="#" class="text-white">Email me</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-          <div class="container d-flex justify-content-between">
-            <a href="#" class="navbar-brand d-flex align-items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-              <strong>Create Dog</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="true" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </div>
-        </div>
-    </header>
 
-    <main>
-    </main>
-    `
-    const body = document.querySelector('body')
-    body.innerHTML = header
-}
+
+
+
+
+
+
+
+
+//<!-- About Section -->
+//</div><div class="w3-container w3-padding-32" id="about">
+//</div>  <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+//</div>  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+//</div>    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+//</div>    laboris nisi ut aliquip ex ea commodo consequat.
+//</div>  </p>
+//</div></div>
+
+//<div class="w3-row-padding w3-grayscale">
+//  <div class="w3-col l3 m6 w3-margin-bottom">
+//    <img src="/w3images/team2.jpg" alt="John" style="width:100%">
+//    <h3>John Doe</h3>
+//    <p class="w3-opacity">CEO & Founder</p>
+//    <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+//    <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+//</div>
+//<!-- Image of location/map -->
+//<div class="w3-container">
+//<img src="/w3images/map.jpg" class="w3-image" style="width:100%">
+//</div>
 
 
 
