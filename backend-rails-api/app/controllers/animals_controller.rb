@@ -34,8 +34,10 @@ class AnimalsController < ApplicationController
 
     def destroy
         animal = Animal.find(params[:id])
+        p "**************"
+        p animal
         animal.destroy
-        render json: animal
+        render json: {message: "you did it"}
     end
 
     private

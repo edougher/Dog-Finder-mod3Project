@@ -28,16 +28,10 @@ navBar = () => {
       <a href="#home" class="w3-bar-item w3-button"><b>DOG</b>Finder</a>
       <!-- Float links to the right. Hide them on small screens -->
       <div class="w3-right w3-hide-small">
-<<<<<<< HEAD
         <button class="create-btn">Conjure Dog</button>
         <a href="#projects" class="w3-bar-item w3-button">Home</a>
         <a href="#about" class="w3-bar-item w3-button">Animals</a>
         <a href="#contact" class="w3-bar-item w3-button">IDK YET</a>
-=======
-        <a id="nav-btn" href="#projects" class="w3-bar-item w3-button">Home</a>
-        <a id="nav-btn" href="#about" class="w3-bar-item w3-button">Animals</a>
-        <a id="nav-btn" href="#contact" class="w3-bar-item w3-button">IDK YET</a>
->>>>>>> d4d312a873ae2575c18bcb742ae2a9bb309ba696
       </div>
     </div>
   </div>
@@ -288,20 +282,12 @@ createCard = (dog) => {
     const card = `
     <div class="col-md-4">
      <div class="card" >
-<<<<<<< HEAD
       <div class="card-block" data-dog="${dog.id}">
        <img class="card-img-top" src="${dog.image}" alt="Card image cap">
         <div class="card-body">
          <p class="card-text">${dog.name} - ${dog.breed}</p>
          <button class="like-btn"><3</button>
          <button class="adopt-btn">Take me home!</button>
-=======
-      <div class="card-block">
-       <img onclick="" class="card-img-top" src="${dog.image}" alt="Card image cap">
-        <div class="card-body">
-         <p class="card-text">${dog.name}</p>
-         <button id="like"class="w3-button" onclick="handleLike(${dog.id})">Like</button>
->>>>>>> d4d312a873ae2575c18bcb742ae2a9bb309ba696
         </div>
       </div>
      </div>
