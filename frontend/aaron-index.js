@@ -246,7 +246,7 @@ displaySignIn = () => {
     fetch('http://localhost:3000/users', reqObj)
     .then(resp => resp.json())
     .then(userData => {
-      console.log(userData[0])
+      console.log(userData)
       //user = userData
     })
 
