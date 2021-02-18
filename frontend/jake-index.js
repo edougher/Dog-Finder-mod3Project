@@ -33,6 +33,7 @@ function grandClickListener() {
         const dogId = e.target.parentElement.parentElement.dataset.dog
         console.log(dogId)
         if (e.target.className === "like-btn"){
+            e.preventDefault()
             console.log('yarp')
             // debugger
             getDogForLikes = () => {
@@ -48,6 +49,7 @@ function grandClickListener() {
             getDogForLikes() 
         }
         if (e.target.className === "adopt-btn") {
+            e.preventDefault()
             console.log('ARF ARF')
             getDogForAdoption = () => {
                 fetch(`http://localhost:3000/animals/${dogId}`)
@@ -72,35 +74,35 @@ function grandClickListener() {
 //                                   //                              //
 
 
-// const handleLikeButton = dog => {
-//     console.log(dog)
-//     const dogId = dog.target.parentElement.dataset.id;
-//     const likeCount = parseIntdog.target.parentElement.children[2].innerText.split(" ")[0];
-//     // assemble an object to pass to the patch request
-//     // send the dog's
-//     // send the current like count and add 1 to account for the new like
-//     const likeData = {
-//       likes: likeCount + 1
-//     }
+const handleLikeButton = dog => {
+    const userId = 1
+    // const likeCount = parseIntdog.target.parentElement.children[2].innerText.split(" ")[0];
+    // assemble an object to pass to the patch request
+    // send the dog's
+    // send the current like count and add 1 to account for the new like
+    const likeData = {
+      animal_id: dog.id,
+      user_id: userId
+    }
   
-//     // assemble a PATCH request object
-//     const reqObj = {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Accept": "application/json"
-//       },
-//       body: JSON.stringify(likeData)
-//     }
-//     fetch(`http://localhost:3000/animals/${dogId}`)
-//       .then(resp => resp.json())
-//       .then(data => {
-//         console.log(data);
-//         generateDogs();
-//       })
-//       .catch(err => console.log(err))
+    // assemble a PATCH/POST request object
+    const reqObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(likeData)
+    }
+    fetch(`http://localhost:3000/likes`, reqObj)
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data)
+        // generateDogs();
+      })
+      .catch(err => console.log(err))
   
-//   }
+  }
 
 //                                   //                              //
 //                                   //                              //
@@ -109,20 +111,24 @@ function grandClickListener() {
 //                                   //                              //
 
 
-// const handleAdoptButton = (dog) => {
-//     console.log(`http://localhost:3000/animals/${dog.id}`)
-//     fetch(`http://localhost:3000/animals/${dog.id}`, {
-//         method: 'DELETE',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }, 
-//         body: JSON.stringify(dog)
-//     })
-//     .then(res => res.json())
-//     .then(dog => {
-//         mainSection.remove(dog)
-//     })
-// }
+const handleAdoptButton = (dog) => {
+    console.log(`http://localhost:3000/animals/${dog.id}`)
+    // debugger
+    fetch(`http://localhost:3000/animals/${dog.id}`, {
+        method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(dog => {
+        mainSection.remove(dog)
+    })
+    startCardsIndex()
+    
+}
+
+   // headers: {
+        //     'Content-Type': 'application/json'
+        // }, 
+        // body: JSON.stringify(dog)
 
 //                                   //                              //
 //                                   //                              //
@@ -130,37 +136,37 @@ function grandClickListener() {
 //                                   //                              //
 //                                   //                              //
 
-const createBtn = document.querySelector(".create-btn");
-createBtn.addEventListener("click", () => {
-    console.log("CREATE ME")
-    // hide & seek with the form
-    const conjureForm = `
-    <div class="create-form-div">
-    <form class="add-dog-form">
-      <input type="text" name="name" value="" placeholder="Dog Name" class="input-text"/>
-      <br />
-      <input type="text" name="image" value="" placeholder="Dog image URL" class="input-text"/>
-      <br />
-      <input type="text" name="breen" value="" placeholder="Dog Breed" class="input-text"/>
-      <br />
-      <input type="submit" name="submit" value="Create" class="submit"/>
-    </form>
-  </div>
-  `
-  const body = document.querySelector('body')
-  body.innerHTML +=  conjureForm
+// const createBtn = document.querySelector(".create-btn");
+// createBtn.addEventListener("click", () => {
+//     console.log("CREATE ME")
+//     // hide & seek with the form
+//     const conjureForm = `
+//     <div class="create-form-div">
+//     <form class="add-dog-form">
+//       <input type="text" name="name" value="" placeholder="Dog Name" class="input-text"/>
+//       <br />
+//       <input type="text" name="image" value="" placeholder="Dog image URL" class="input-text"/>
+//       <br />
+//       <input type="text" name="breen" value="" placeholder="Dog Breed" class="input-text"/>
+//       <br />
+//       <input type="submit" name="submit" value="Create" class="submit"/>
+//     </form>
+//   </div>
+//   `
+//   const body = document.querySelector('body')
+//   body.innerHTML +=  conjureForm
 
-})
+// })
 
-// // save new dog
-let createForm = document.querySelector('.add-dog-form')
-createForm.addEventListener('submit', event => {
-    debugger
-    event.preventDefault()
-    console.log(event.target)
-    // handleNewDog(event.target)
-}
-)
+// // // save new dog
+// let createForm = document.querySelector('.add-dog-form')
+// createForm.addEventListener('submit', event => {
+//     debugger
+//     // event.preventDefault()
+//     console.log(event.target)
+//     // handleNewDog(event.target)
+// }
+// )
 
 // const handleNewDog = (target) => {
 
