@@ -288,20 +288,12 @@ createCard = (dog) => {
     const card = `
     <div class="col-md-4">
      <div class="card" >
-<<<<<<< HEAD
       <div class="card-block" data-dog="${dog.id}">
        <img class="card-img-top" src="${dog.image}" alt="Card image cap">
         <div class="card-body">
          <p class="card-text">${dog.name} - ${dog.breed}</p>
          <button class="like-btn"><3</button>
          <button class="adopt-btn">Take me home!</button>
-=======
-      <div class="card-block">
-       <img onclick="" class="card-img-top" src="${dog.image}" alt="Card image cap">
-        <div class="card-body">
-         <p class="card-text">${dog.name}</p>
-         <button id="like"class="w3-button" onclick="handleLike(${dog.id})">Like</button>
->>>>>>> d4d312a873ae2575c18bcb742ae2a9bb309ba696
         </div>
       </div>
      </div>
