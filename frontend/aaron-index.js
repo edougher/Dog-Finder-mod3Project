@@ -1,4 +1,11 @@
+let user = {
+  id: null,
+  name: null,
+  isActive: false
+}
 
+//homepage
+body = document.querySelector('body')
 startHome = () =>{
 navBar()
 header()
@@ -7,6 +14,7 @@ getDogsForSlideShow()
 
 }
 
+//animal-card page
 startCardsIndex = () => {
 navBar()
 createCardContainer()
@@ -16,21 +24,26 @@ generateDog()
 navBar = () => {
     const navBar = `
     <div class="w3-top">
-    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <div id="nav-section" class="w3-bar w3-section w3-white w3-wide w3-padding">
       <a href="#home" class="w3-bar-item w3-button"><b>DOG</b>Finder</a>
       <!-- Float links to the right. Hide them on small screens -->
       <div class="w3-right w3-hide-small">
+<<<<<<< HEAD
         <button class="create-btn">Conjure Dog</button>
         <a href="#projects" class="w3-bar-item w3-button">Home</a>
         <a href="#about" class="w3-bar-item w3-button">Animals</a>
         <a href="#contact" class="w3-bar-item w3-button">IDK YET</a>
+=======
+        <a id="nav-btn" href="#projects" class="w3-bar-item w3-button">Home</a>
+        <a id="nav-btn" href="#about" class="w3-bar-item w3-button">Animals</a>
+        <a id="nav-btn" href="#contact" class="w3-bar-item w3-button">IDK YET</a>
+>>>>>>> d4d312a873ae2575c18bcb742ae2a9bb309ba696
       </div>
     </div>
   </div>
   <main>
   </main>
     `
-    const body = document.querySelector('body')
     body.innerHTML = navBar
     console.log(1)
     
@@ -45,17 +58,15 @@ header = () => {
       </div>
   </header>
     `
-    const body = document.querySelector('body')
     body.innerHTML += header
     console.log(2)
 }
 
 
 homePageSlideShow = () => {
-const body = document.querySelector('body')
 const cardDiv = `
 <div class="w3-content w3-padding" style="max-width:1564px">
- <div class="w3-container w3-padding-32" id="projects">
+ <div class="w3-container w3-padding-32" id="dogs">
   <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Dogs</h3>
  </div>
 <div id="carousel" class="w3-content w3-section" style="max-width:500px">
@@ -67,7 +78,8 @@ console.log(3)
 }
 
 getDogsForSlideShow = () =>{
-    
+    signInSignup()
+    //displaySignIn()
     let i = 0
     do {
     fetch('https://dog.ceo/api/breeds/image/random')
@@ -81,33 +93,178 @@ getDogsForSlideShow = () =>{
     while(i < 10)
     
     console.log(4) 
-
 }
 createImg = (dogImg) => {
     //console.log(dogImg)
     const carousel = document.querySelector('div#carousel')
-    let img = `<img class="mySlides" src="${dogImg}" style="width:100%">`
+    let img = `<img class="w3-circle" src="${dogImg}" style="width:100%">`
     carousel.innerHTML += img
+    
 
     var slideIndex = 0;
 carouselFunc();
 
 function carouselFunc() {
     var i;
-    var x = document.getElementsByClassName("mySlides");
+    var x = document.getElementsByClassName("w3-circle");
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";
     }
     slideIndex++;
     if (slideIndex > x.length) {slideIndex = 1}
     x[slideIndex-1].style.display = "block";
-    setTimeout(carouselFunc, 2500); // Change image every 2 seconds
+    setTimeout(carouselFunc, 2500); // Change image every 2.5 seconds
 }
+
+}
+
+signInSignup = () => {
+  const signUpBtn = `
+  <div class="w3-content w3-padding" style="max-width:1564px">
+   <div class="w3-container w3-padding-32" id="signUp">
+   <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Sign Up</h3>
+  </div>
+  </div>
+  <div class="w3-container">
+  <button id="sign-in-btn" class="w3-button w3-round-xlarge">Sign In</button>
+  <button id="sign-up-btn" class="w3-button w3-round-xlarge">Sign Up</button> 
+</div>`
+  
+  body.innerHTML += signUpBtn
+  const signUpBTN = document.querySelector('#sign-up-btn')
+  signUpBTN.addEventListener('click', function(e) {
+    displaySignUp()
+  })
+  const signInBTN = document.querySelector("#sign-in-btn")
+  signInBTN.addEventListener('click', function() {
+    displaySignIn()
+  })
+  //handleSignIn()
+}
+
+displaySignUp = () => {
+  body.innerHTML = ''
+  const signUpForm = `
+  <div class="container">
+  <form id="sign-up" class="was-validated">
+    <div class="form-group">
+      <label for="uname">Username:</label>
+      <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="form-group form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" name="remember" required> I agree for my data to be tracked and stored.
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Check this checkbox to continue.</div>
+      </label>
+    </div>
+    <button id="sign-up-btn" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+  `
+  body.innerHTML = signUpForm
+  handleSignUp()
+}
+handleSignUp = () => {
+  const form = document.querySelector('form')
+  form.addEventListener('submit', function(e) {
+    e.preventDefault()
+    createUser(e.target[0].value)
+   
+  }) 
+}
+createUser = (name) => {
+  const newName = {
+      name: name
+  }
+  const reqObj = {
+    method: "POST",
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(newName)
+  }
+  fetch('http://localhost:3000/users', reqObj)
+  .then(resp => resp.json())
+  .then(userData => {
+    user.id = userData.id
+    user.name = userData.name
+    user.isActive = true
+    startCardsIndex()
+  })
 }
 
 
+displaySignIn = () => {
+  const body = document.querySelector('body')
+  body.innerHTML = ''
+  const signUpModal = `
+  <div id="signUp" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick=""
+        class="w3-button w3-display-topright">&times;</span>
+        <div class="container">
+        <form id="sign-in">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="username" class="form-control" placeholder="Enter username" id="username">
+        </div>
+        <button id="sign-in-btn"type="submit" class="btn btn-primary">Submit</button>
+        <button type="click" class="btn btn-primary" onclick="handleModalCancelClick()">Cancel</button>
+      </form>
+</div>
+      </div>
+    </div>
+  </div>`
+  body.innerHTML += signUpModal
+  showSignInModal()
+  }
+
+  showSignInModal = () => {
+    const modal = document.querySelector('#signUp')
+    modal.style.display='block'
+    handleSignIn()
+  }
+
+  handleSignIn = () => {
+    const signInSubmit = document.querySelector('form#sign-in') 
+    signInSubmit.addEventListener('submit', function(e) {
+      e.preventDefault()
+      const username = e.target[0].value
+      checkUsername(username)
+    }) 
+  }
+
+  checkUsername = (name) => {
+    const nameCheck = {
+      name: name
+    }
+    const reqObj = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(nameCheck)
+    }
+
+    fetch('http://localhost:3000/users', reqObj)
+    .then(resp => resp.json())
+    .then(userData => {
+      console.log(userData)
+      //user = userData
+    })
+
+  }
+
+
+  handleModalCancelClick = () => {
+    startHome()
+  }
 //homepage above
-
+//startHome()
 
 //card deck page below
 createCardContainer = () => {
@@ -131,12 +288,20 @@ createCard = (dog) => {
     const card = `
     <div class="col-md-4">
      <div class="card" >
+<<<<<<< HEAD
       <div class="card-block" data-dog="${dog.id}">
        <img class="card-img-top" src="${dog.image}" alt="Card image cap">
         <div class="card-body">
          <p class="card-text">${dog.name} - ${dog.breed}</p>
          <button class="like-btn"><3</button>
          <button class="adopt-btn">Take me home!</button>
+=======
+      <div class="card-block">
+       <img onclick="" class="card-img-top" src="${dog.image}" alt="Card image cap">
+        <div class="card-body">
+         <p class="card-text">${dog.name}</p>
+         <button id="like"class="w3-button" onclick="handleLike(${dog.id})">Like</button>
+>>>>>>> d4d312a873ae2575c18bcb742ae2a9bb309ba696
         </div>
       </div>
      </div>
