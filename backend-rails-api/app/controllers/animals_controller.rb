@@ -32,9 +32,15 @@ class AnimalsController < ApplicationController
         render json: animal
     end
 
+    def destroy
+        animal = Animal.find(params[:id])
+        animal.destroy
+        render json: animal
+    end
+
     private
 
     def animal_params
-        params.require(:animal).permit(:name, :total_score)
+        params.require(:animal).permit(:name)
     end 
 end
