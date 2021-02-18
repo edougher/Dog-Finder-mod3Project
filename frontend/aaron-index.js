@@ -20,6 +20,7 @@ navBar = () => {
       <a href="#home" class="w3-bar-item w3-button"><b>DOG</b>Finder</a>
       <!-- Float links to the right. Hide them on small screens -->
       <div class="w3-right w3-hide-small">
+        <button class="create-btn">Conjure Dog</button>
         <a href="#projects" class="w3-bar-item w3-button">Home</a>
         <a href="#about" class="w3-bar-item w3-button">Animals</a>
         <a href="#contact" class="w3-bar-item w3-button">IDK YET</a>
@@ -133,7 +134,9 @@ createCard = (dog) => {
       <div class="card-block" data-dog="${dog.id}">
        <img class="card-img-top" src="${dog.image}" alt="Card image cap">
         <div class="card-body">
-         <p class="card-text">${dog.name}</p>
+         <p class="card-text">${dog.name} - ${dog.breed}</p>
+         <button class="like-btn"><3</button>
+         <button class="adopt-btn">Take me home!</button>
         </div>
       </div>
      </div>
