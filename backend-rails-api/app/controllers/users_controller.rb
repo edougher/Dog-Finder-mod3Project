@@ -1,14 +1,15 @@
+require 'pry'
 class UsersController < ApplicationController
 
     def index
         users = User.all
 
-        render json:users
+        render json: users
     end
 
 
     def create 
-            user = User.find_or_create_by(name: user_params[:name])
+        user = User.find_or_create_by(name: user_params[:name])
         if user.save 
             render json: user 
         else 
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
     # end 
 
     def show
-        user = User.find(params[:id])
+        user = User.find(params[:name])
         render json: user, include: [:likes]
     end
   

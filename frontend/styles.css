@@ -1,7 +1,18 @@
 /*
  * greetings page
  */
- body, html {
+ html {
     height: 100%;
     font-family: "Inconsolata", sans-serif;
   }
+ /*
+  #nav-section {
+  border: 1px solid;
+  }
+*/
+/*
+  #nav-btn {
+  padding: 10px;
+  box-shadow: 5px 15px;
+  }
+  */
