@@ -189,9 +189,10 @@ createUser = (name) => {
   fetch('http://localhost:3000/users', reqObj)
   .then(resp => resp.json())
   .then(userData => {
-    user.id = userData.id
-    user.name = userData.name
-    user.isActive = true
+    console.log(userData)
+    //user.id = userData.id
+    //user.name = userData.name
+    //user.isActive = true
     startCardsIndex()
   })
 }
