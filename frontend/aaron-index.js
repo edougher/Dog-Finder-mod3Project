@@ -31,9 +31,15 @@ navBar = () => {
       <!-- Float links to the right. Hide them on small screens -->
       <div class="w3-right w3-hide-small">
         <button class="create-btn">Conjure Dog</button>
+<<<<<<< HEAD
         <a onclick="startHome()" class="w3-bar-item w3-button">Home</a>
         <a onclick="startCardsIndex()" class="w3-bar-item w3-button">Animals</a>
         <a onclick="startProfilePage()" class="w3-bar-item w3-button">IDK YET</a>
+=======
+        <a href="#projects" class="w3-bar-item w3-button">Home</a>
+        <a href="#about" class="w3-bar-item w3-button">Animals</a>
+        <a href="#contact" class="w3-bar-item w3-button">IDK YET</a>
+>>>>>>> goforMVP
       </div>
     </div>
   </div>

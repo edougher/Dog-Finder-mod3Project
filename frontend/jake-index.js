@@ -13,10 +13,11 @@ function ce(tag){
 
 const likeBtn = document.querySelector("like-btn");
 const adoptBtn = document.querySelector("adopt-btn");
-let mainSection = document.querySelector('.py-5');
+const mainSection = document.querySelector('.py-5');
 
 const jakeMain = () => {
     grandClickListener()
+    buildDog()
 }
 //                                   //                              //
 //                                   //                              //
@@ -28,6 +29,7 @@ const jakeMain = () => {
 
 
 function grandClickListener() {
+    // debugger
     mainSection.addEventListener('click', function(e) {
         console.log("hello")
         const dogId = e.target.parentElement.parentElement.dataset.dog
@@ -121,7 +123,7 @@ const handleAdoptButton = (dog) => {
     .then(dog => {
         mainSection.remove(dog)
     })
-    startCardsIndex()
+    generateDog()
     
 }
 
@@ -136,37 +138,66 @@ const handleAdoptButton = (dog) => {
 //                                   //                              //
 //                                   //                              //
 
-// const createBtn = document.querySelector(".create-btn");
-// createBtn.addEventListener("click", () => {
-//     console.log("CREATE ME")
-//     // hide & seek with the form
-//     const conjureForm = `
-//     <div class="create-form-div">
-//     <form class="add-dog-form">
-//       <input type="text" name="name" value="" placeholder="Dog Name" class="input-text"/>
-//       <br />
-//       <input type="text" name="image" value="" placeholder="Dog image URL" class="input-text"/>
-//       <br />
-//       <input type="text" name="breen" value="" placeholder="Dog Breed" class="input-text"/>
-//       <br />
-//       <input type="submit" name="submit" value="Create" class="submit"/>
-//     </form>
-//   </div>
-//   `
-//   const body = document.querySelector('body')
-//   body.innerHTML +=  conjureForm
+const createBtn = document.querySelector(".create-btn");
 
-// })
+const buildDog = () => {
+    const conjureForm = `
+    <div class="create-form-div">
+    <form class="add-dog-form">
+      <input type="text" name="name" value="" placeholder="Dog Name" class="name-input-text"/>
+      <br />
+      <input type="text" name="breed" value="" placeholder="Dog Breed" class="breed-input-text"/>
+      <br />
+      <input type="text" name="image" value="" placeholder="Dog image URL" class="img-input-text"/>
+      <br />
+      <input type="submit" name="submit" value="Create" class="submit"/>
+      </form>
+    </div>
+    `
+    createBtn.addEventListener("click", () => {
+        console.log("CREATE ME")
+        const body = document.querySelector('body')
+        body.innerHTML +=  conjureForm
+        let createForm = document.querySelector('.add-dog-form')
+        let createFormName = document.querySelector('.name-input-text')
+        let createFormImg = document.querySelector('.img-input-text')
+        let createFormBreed = document.querySelector('.breed-input-text')
+        
+        createForm.addEventListener('submit', event => {
+        // debugger
+        event.preventDefault()
+        handleNewDog(event)
+        })   
 
-// // // save new dog
-// let createForm = document.querySelector('.add-dog-form')
-// createForm.addEventListener('submit', event => {
-//     debugger
-//     // event.preventDefault()
-//     console.log(event.target)
-//     // handleNewDog(event.target)
-// }
-// )
+    const handleNewDog = (event) => {
+        let data = {
+            name: createFormName.value,
+            breed: createFormBreed.value,
+            image: createFormImg.value,
+            } 
+            console.log(data)
+
+        createForm.reset()
+        const reqObj = { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+        // debugger
+            fetch('http://localhost:3000/animals', reqObj)
+                .then(res => res.json())
+                .then(newDog => {
+                    createCard(newDog);
+                })
+             }
+        })
+    }
+
+// // save new dog
+
 
 // const handleNewDog = (target) => {
 
