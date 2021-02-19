@@ -144,11 +144,11 @@ const buildDog = () => {
     const conjureForm = `
     <div class="create-form-div">
     <form class="add-dog-form">
-      <input type="text" name="name" value="" placeholder="Dog Name" class="input-text"/>
+      <input type="text" name="name" value="" placeholder="Dog Name" class="name-input-text"/>
       <br />
-      <input type="text" name="image" value="" placeholder="Dog image URL" class="input-text"/>
+      <input type="text" name="breed" value="" placeholder="Dog Breed" class="breed-input-text"/>
       <br />
-      <input type="text" name="breen" value="" placeholder="Dog Breed" class="input-text"/>
+      <input type="text" name="image" value="" placeholder="Dog image URL" class="img-input-text"/>
       <br />
       <input type="submit" name="submit" value="Create" class="submit"/>
       </form>
@@ -159,33 +159,42 @@ const buildDog = () => {
         const body = document.querySelector('body')
         body.innerHTML +=  conjureForm
         let createForm = document.querySelector('.add-dog-form')
+        let createFormName = document.querySelector('.name-input-text')
+        let createFormImg = document.querySelector('.img-input-text')
+        let createFormBreed = document.querySelector('.breed-input-text')
+        
         createForm.addEventListener('submit', event => {
         // debugger
         event.preventDefault()
-        console.log(event.target)
-        handleNewDog(event.target)
-    })    
-    const handleNewDog = (event) => {
-        debugger
-        let data = {
-            name: createForm[0].value,
-            image: createForm[1].value,
-            breed: createForm[2].value,
-        } 
-        createForm.reset()
+        handleNewDog(event)
+        })   
 
-            fetch('http://localhost:3000/animals', {
+    const handleNewDog = (event) => {
+        let data = {
+            name: createFormName.value,
+            breed: createFormBreed.value,
+            image: createFormImg.value,
+            } 
+            console.log(data)
+
+        createForm.reset()
+        const reqObj = { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify(data)
-            })
-            .then(res => res.json())
         }
-})
-}
+        // debugger
+            fetch('http://localhost:3000/animals', reqObj)
+                .then(res => res.json())
+                .then(newDog => {
+                    createCard(newDog);
+                })
+             }
+        })
+    }
 
 // // save new dog
 
