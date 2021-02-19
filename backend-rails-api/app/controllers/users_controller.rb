@@ -7,9 +7,11 @@ class UsersController < ApplicationController
         render json: users
     end
 
-
     def create 
-        user = User.find_or_create_by(name: user_params[:name])
+        binding.pry
+        user = User.create(user_params)
+        user.image.attach(user_params[:images])
+        
         if user.save 
             render json: user 
         else 
@@ -23,7 +25,7 @@ class UsersController < ApplicationController
     # end 
 
     def show
-        user = User.find(params[:name])
+        user = User.find(params[:id])
         render json: user, include: [:likes]
     end
   
@@ -36,7 +38,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name, :total_score)
+        params.require(:user).permit(:name, :age, :location, :image)
     end 
     
 

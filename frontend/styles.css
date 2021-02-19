@@ -5,6 +5,17 @@
     height: 100%;
     font-family: "Inconsolata", sans-serif;
   }
+
+  #sign-in-btn, #sign-up-btn {
+    background-color: hsla(167, 38%, 69%, 0.582);
+    margin: 20px;
+  }
+
+  .divider {
+    width:10px;
+    height:auto;
+    display:inline-block;
+  }
  /*
   #nav-section {
   border: 1px solid;

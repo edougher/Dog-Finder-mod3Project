@@ -9,6 +9,7 @@ body = document.querySelector('body')
 startHome = () =>{
 navBar()
 header()
+signInSignup()
 homePageSlideShow()
 getDogsForSlideShow()
 
@@ -20,6 +21,7 @@ navBar()
 createCardContainer()
 generateDog()
 }
+
 //homepage below
 navBar = () => {
     const navBar = `
@@ -28,16 +30,10 @@ navBar = () => {
       <a href="#home" class="w3-bar-item w3-button"><b>DOG</b>Finder</a>
       <!-- Float links to the right. Hide them on small screens -->
       <div class="w3-right w3-hide-small">
-<<<<<<< HEAD
         <button class="create-btn">Conjure Dog</button>
-        <a href="#projects" class="w3-bar-item w3-button">Home</a>
-        <a href="#about" class="w3-bar-item w3-button">Animals</a>
-        <a href="#contact" class="w3-bar-item w3-button">IDK YET</a>
-=======
-        <a id="nav-btn" href="#projects" class="w3-bar-item w3-button">Home</a>
-        <a id="nav-btn" href="#about" class="w3-bar-item w3-button">Animals</a>
-        <a id="nav-btn" href="#contact" class="w3-bar-item w3-button">IDK YET</a>
->>>>>>> d4d312a873ae2575c18bcb742ae2a9bb309ba696
+        <a onclick="startHome()" class="w3-bar-item w3-button">Home</a>
+        <a onclick="startCardsIndex()" class="w3-bar-item w3-button">Animals</a>
+        <a onclick="startProfilePage()" class="w3-bar-item w3-button">IDK YET</a>
       </div>
     </div>
   </div>
@@ -52,7 +48,7 @@ navBar = () => {
 header = () => {
     const header = `
     <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-        <img class="w3-image" src="/Users/aaron/Flatiron/javascript/mod-3-proj/frontend/resources/images/juan-manuel-nunez-lvpV017SZao-unsplash.jpg" alt="" width="1500" height="800">
+        <img class="w3-image w3-card-4 w3-sepia-max" src="/Users/aaron/Flatiron/javascript/mod-3-proj/frontend/resources/images/juan-manuel-nunez-lvpV017SZao-unsplash.jpg" alt="" width="1500" height="800">
       <div class="w3-display-middle w3-margin-top w3-center">
         <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>DOG</b></span> <span class="w3-hide-small w3-text-light-grey">Finder</span></h1>
       </div>
@@ -60,6 +56,33 @@ header = () => {
     `
     body.innerHTML += header
     console.log(2)
+    
+}
+
+signInSignup = () => {
+  const signUpBtn = `
+  <div class="w3-content w3-padding" style="max-width:1564px">
+   <div class="w3-container w3-padding-32" id="signUp">
+   <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16 w3-center">Sign Up</h3>
+  </div>
+  </div>
+  <div class="w3-container">
+  <div class="w3-card-4 w3-center">
+  <button onclick="displaySignIn()"id="sign-in-btn" class="w3-button w3-round-xlarge">Sign In</button>
+  <button onclick="displaySignUp()"id="sign-up-btn" class="w3-button w3-round-xlarge">Sign Up</button> 
+  </div
+</div>`
+  
+  body.innerHTML += signUpBtn
+  //const signUpBTN = document.querySelector('#sign-up-btn')
+  //signUpBTN.addEventListener('click', function(e) {
+  //  displaySignUp()
+  //})
+  //const signInBTN = document.querySelector("#sign-in-btn")
+  //signInBTN.addEventListener('click', function() {
+  //  displaySignIn()
+  //})
+  //handleSignIn()
 }
 
 
@@ -67,9 +90,11 @@ homePageSlideShow = () => {
 const cardDiv = `
 <div class="w3-content w3-padding" style="max-width:1564px">
  <div class="w3-container w3-padding-32" id="dogs">
-  <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Dogs</h3>
+  <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16 w3-center">Dogs Pics</h3>
  </div>
 <div id="carousel" class="w3-content w3-section" style="max-width:500px">
+<div id="img-cont" class="w3-card-4">
+</div>
 </div>
 `
 body.innerHTML += cardDiv
@@ -78,7 +103,7 @@ console.log(3)
 }
 
 getDogsForSlideShow = () =>{
-    signInSignup()
+    
     //displaySignIn()
     let i = 0
     do {
@@ -96,8 +121,12 @@ getDogsForSlideShow = () =>{
 }
 createImg = (dogImg) => {
     //console.log(dogImg)
-    const carousel = document.querySelector('div#carousel')
-    let img = `<img class="w3-circle" src="${dogImg}" style="width:100%">`
+    const carousel = document.querySelector('#img-cont')
+
+    //const card = `<div class="w3-card-4">
+    //                <img class="image"src="img_avatar.png" alt="Person">
+    //              </div>`
+    let img = `<img class="w3-round" src="${dogImg}" style="width:100%; height: 60%">`
     carousel.innerHTML += img
     
 
@@ -106,7 +135,7 @@ carouselFunc();
 
 function carouselFunc() {
     var i;
-    var x = document.getElementsByClassName("w3-circle");
+    var x = document.getElementsByClassName("w3-round");
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";
     }
@@ -118,30 +147,6 @@ function carouselFunc() {
 
 }
 
-signInSignup = () => {
-  const signUpBtn = `
-  <div class="w3-content w3-padding" style="max-width:1564px">
-   <div class="w3-container w3-padding-32" id="signUp">
-   <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Sign Up</h3>
-  </div>
-  </div>
-  <div class="w3-container">
-  <button id="sign-in-btn" class="w3-button w3-round-xlarge">Sign In</button>
-  <button id="sign-up-btn" class="w3-button w3-round-xlarge">Sign Up</button> 
-</div>`
-  
-  body.innerHTML += signUpBtn
-  const signUpBTN = document.querySelector('#sign-up-btn')
-  signUpBTN.addEventListener('click', function(e) {
-    displaySignUp()
-  })
-  const signInBTN = document.querySelector("#sign-in-btn")
-  signInBTN.addEventListener('click', function() {
-    displaySignIn()
-  })
-  //handleSignIn()
-}
-
 displaySignUp = () => {
   body.innerHTML = ''
   const signUpForm = `
@@ -150,6 +155,7 @@ displaySignUp = () => {
     <div class="form-group">
       <label for="uname">Username:</label>
       <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+      <input type='file' name='image'/>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>
@@ -171,31 +177,37 @@ handleSignUp = () => {
   const form = document.querySelector('form')
   form.addEventListener('submit', function(e) {
     e.preventDefault()
-    createUser(e.target[0].value)
+    let image = e.target[1].files[0]
+    let userName = e.target[0].value
+    
+
+    //createUser(userName, image)
    
   }) 
 }
-createUser = (name) => {
-  const newName = {
-      name: name
+createUser = (userName, image) => {
+  const formData = new FormData()
+  formData.append('name', userName)
+  formData.append('image', image)
+  
+  const newUser = {
+      name: userName
   }
   const reqObj = {
     method: "POST",
     headers: {
       'content-type': 'application/json'
     },
-    body: JSON.stringify(newName)
+    body: JSON.stringify(newUser)
   }
   fetch('http://localhost:3000/users', reqObj)
   .then(resp => resp.json())
   .then(userData => {
-    user.id = userData.id
-    user.name = userData.name
-    user.isActive = true
+    user = userData
     startCardsIndex()
   })
 }
-
+//getButtonListOpts.swal-getButtonListOpts.swal-button--confirm
 
 displaySignIn = () => {
   const body = document.querySelector('body')
@@ -239,21 +251,24 @@ displaySignIn = () => {
   }
 
   checkUsername = (name) => {
-    const nameCheck = {
-      name: name
-    }
-    const reqObj = {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(nameCheck)
-    }
-
-    fetch('http://localhost:3000/users', reqObj)
+    let username = name
+   
+    fetch('http://localhost:3000/users')
     .then(resp => resp.json())
     .then(userData => {
-      console.log(userData)
+      if(userData.some(u => u.name === username)){
+        let currentUser = userData.find(user => user.name === username)
+        user = currentUser
+        swal("Welcome Back", "success")
+        startCardsIndex()
+        
+        //alert(`Welcome Back, ${username}!`)
+      }
+      else {
+        displaySignUp()
+      }
+      //console.log(userData)
+      //console.log(username)
       //user = userData
     })
 
@@ -289,7 +304,7 @@ createCard = (dog) => {
     <div class="col-md-4">
      <div class="card" >
       <div class="card-block" data-dog="${dog.id}">
-       <img class="card-img-top" src="${dog.image}" alt="Card image cap">
+       <img class="card-img-top w3-hover-opacity" src="${dog.image}" alt="Card image cap">
         <div class="card-body">
          <p class="card-text">${dog.name} - ${dog.breed}</p>
          <button class="like-btn"><3</button>
