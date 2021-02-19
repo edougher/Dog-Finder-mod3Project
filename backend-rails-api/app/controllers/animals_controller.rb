@@ -3,17 +3,13 @@ class AnimalsController < ApplicationController
     def index
         animals = Animal.all
 
-        render json:animals
+        render json: animals
     end
 
 
     def create 
-            animal = Animal.find_or_create_by(name: user_params[:name])
-        if user.save 
+            animal = Animal.create(animal_params)
             render json: animal 
-        else 
-            render json: {error: "fill out name to save"}, status: 403
-        end 
     end 
 
     # def edit 
@@ -43,6 +39,6 @@ class AnimalsController < ApplicationController
     private
 
     def animal_params
-        params.require(:animal).permit(:name)
+        params.require(:animal).permit(:name, :breed, :image)
     end 
 end
