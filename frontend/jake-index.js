@@ -11,14 +11,16 @@ function ce(tag){
     return document.createElement(tag)
 }
 
-const likeBtn = document.querySelector("like-btn");
-const adoptBtn = document.querySelector("adopt-btn");
-const mainSection = document.querySelector('.py-5');
+
+
 
 const jakeMain = () => {
+    //debugger
+    console.log(10)
     grandClickListener()
     buildDog()
 }
+
 //                                   //                              //
 //                                   //                              //
 //                       DOG CARD STUFF                              //
@@ -28,15 +30,54 @@ const jakeMain = () => {
 
 
 
-function grandClickListener() {
-    // debugger
-    mainSection.addEventListener('click', function(e) {
-        console.log("hello")
-        const dogId = e.target.parentElement.parentElement.dataset.dog
-        console.log(dogId)
-        if (e.target.className === "like-btn"){
-            e.preventDefault()
+//function grandClickListener() {
+//    const likeBtn = document.querySelector('button.like-btn')
+//    mainSection.addEventListener('click', function(e) {
+//        console.log("hello")
+//        const dogId = e.target.parentElement.parentElement.dataset.dog
+//        console.log(dogId)
+//        if (e.target.className === "like-btn"){
+//            e.preventDefault()
+//            console.log('yarp')
+//            // debugger
+//            getDogForLikes = () => {
+//                fetch(`http://localhost:3000/animals/${dogId}`)
+//                    .then(resp => resp.json())
+//                    .then(console.log('yolooooooo'))
+//                    .then(dog => {
+//                        // debugger
+//                        handleLikeButton(dog)
+//                        
+//                    })
+//            }
+//            getDogForLikes() 
+//        }
+//        if (e.target.className === "adopt-btn") {
+//            e.preventDefault()
+//            console.log('ARF ARF')
+//            getDogForAdoption = () => {
+//                fetch(`http://localhost:3000/animals/${dogId}`)
+//                    .then(resp => resp.json())
+//                    .then(console.log('yolooooooo'))
+//                    .then(dog => {
+//                        // debugger
+//                        handleAdoptButton(dog)
+//                        
+//                    })
+//            }
+//            getDogForAdoption() 
+//        }
+//    })
+//}
+function grandClickListener(){
+const mainSection = document.querySelector('.py-5');
+const likeBtn = document.querySelector('button.like-btn')
+const adoptBtn = document.querySelector('button.adopt-btn')
+//debugger
+likeBtn.addEventListener('click', function(e) {
+        e.preventDefault()
             console.log('yarp')
+            //const dogId = e.target.parentElement.parentElement.dataset.dog
             // debugger
             getDogForLikes = () => {
                 fetch(`http://localhost:3000/animals/${dogId}`)
@@ -49,10 +90,13 @@ function grandClickListener() {
                     })
             }
             getDogForLikes() 
-        }
-        if (e.target.className === "adopt-btn") {
-            e.preventDefault()
+
+})
+adoptBtn.addEventListener('click', function(e) {
+    e.preventDefault()
             console.log('ARF ARF')
+            //debugger
+            const dogId = e.target.parentElement.parentElement.dataset.dog
             getDogForAdoption = () => {
                 fetch(`http://localhost:3000/animals/${dogId}`)
                     .then(resp => resp.json())
@@ -62,11 +106,11 @@ function grandClickListener() {
                         handleAdoptButton(dog)
                         
                     })
-            }
+                }
             getDogForAdoption() 
-        }
-    })
-}
+})
+}   
+
 
 
 //                                   //                              //
@@ -115,15 +159,20 @@ const handleLikeButton = dog => {
 
 const handleAdoptButton = (dog) => {
     console.log(`http://localhost:3000/animals/${dog.id}`)
-    // debugger
+     //debugger
     fetch(`http://localhost:3000/animals/${dog.id}`, {
         method: 'DELETE'
     })
     .then(res => res.json())
     .then(dog => {
-        mainSection.remove(dog)
+        console.log(dog)
+        console.log('dog deleted')
+        //mainSection.remove(dog)
+        startCardsIndex()
     })
-    generateDog()
+    //startCardsIndex()
+    console.log("dog refreshed")
+    //generateDog()
     
 }
 
@@ -138,31 +187,54 @@ const handleAdoptButton = (dog) => {
 //                                   //                              //
 //                                   //                              //
 
-const createBtn = document.querySelector(".create-btn");
-
+//const createBtn = document.querySelector(".create-btn");
+//const createBtn = document.querySelector("#conjure-dog-btn");
 const buildDog = () => {
-    const conjureForm = `
-    <div class="create-form-div">
-    <form class="add-dog-form">
-      <input type="text" name="name" value="" placeholder="Dog Name" class="name-input-text"/>
-      <br />
-      <input type="text" name="breed" value="" placeholder="Dog Breed" class="breed-input-text"/>
-      <br />
-      <input type="text" name="image" value="" placeholder="Dog image URL" class="img-input-text"/>
-      <br />
-      <input type="submit" name="submit" value="Create" class="submit"/>
-      </form>
-    </div>
-    `
+    const createBtn = document.querySelector("#conjure-dog-btn");
+    //const conjureForm = `
+    //<div class="create-form-div">
+    //<form class="add-dog-form">
+    //  <input type="text" name="name" value="" placeholder="Dog Name" class="name-input-text"/>
+    //  <br />
+    //  <input type="text" name="breed" value="" placeholder="Dog Breed" class="breed-input-text"/>
+    //  <br />
+    //  <input type="text" name="image" value="" placeholder="Dog image URL" class="img-input-text"/>
+    //  <br />
+    //  <input type="submit" name="submit" value="Create" class="submit"/>
+    //  </form>
+    //</div>
+    //`
+    const conjureForm = `<div class="container">
+    <form id="add-dog-form" class="was-validated">
+      <div class="form-group">
+        <label for="uname">Create a New Dog</label>
+        <input type="text" class="form-control" id="name-input-text" placeholder="Dog Name" name="name" required>
+        <div class="valid-feedback">Valid.</div>
+        <input type="text" class="form-control" id="breed-input-text" placeholder="Dog Breed" name="breed" required>
+        <div class="valid-feedback">Valid.</div>
+        <input type="text" class="form-control" id="img-input-text" placeholder="Dog image URL" name="image" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+      <div class="form-group form-check">
+        <label class="form-check-label">
+          <div class="invalid-feedback">Check this checkbox to continue.</div>
+        </label>
+      </div>
+      <button id="sign-up-btn" type="submit" name="submit" value="Create" class="btn btn-primary">Submit</button>
+    </form>
+  </div>`
+  
     createBtn.addEventListener("click", () => {
         console.log("CREATE ME")
-        const body = document.querySelector('body')
-        body.innerHTML +=  conjureForm
-        let createForm = document.querySelector('.add-dog-form')
-        let createFormName = document.querySelector('.name-input-text')
-        let createFormImg = document.querySelector('.img-input-text')
-        let createFormBreed = document.querySelector('.breed-input-text')
-        
+        //const body = document.querySelector('body')
+        const formCard = document.querySelector('#dog-form-container')
+        formCard.innerHTML +=  conjureForm
+        let createForm = document.querySelector('#add-dog-form')
+        let createFormName = document.querySelector('#name-input-text')
+        let createFormImg = document.querySelector('#img-input-text')
+        let createFormBreed = document.querySelector('#breed-input-text')
+
         createForm.addEventListener('submit', event => {
         // debugger
         event.preventDefault()
@@ -190,7 +262,8 @@ const buildDog = () => {
             fetch('http://localhost:3000/animals', reqObj)
                 .then(res => res.json())
                 .then(newDog => {
-                    createCard(newDog);
+                    //createCard(newDog);
+                    startCardsIndex()
                 })
              }
         })
@@ -221,4 +294,4 @@ const buildDog = () => {
 
 
 
-jakeMain()
+

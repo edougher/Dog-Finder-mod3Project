@@ -9,8 +9,8 @@ class UsersController < ApplicationController
 
     def create 
         binding.pry
-        user = User.create(user_params)
-        user.image.attach(user_params[:images])
+        user = User.create(params)
+        user.image.attach(params[:image])
         
         if user.save 
             render json: user 
@@ -37,9 +37,9 @@ class UsersController < ApplicationController
 
     private
 
-    def user_params
-        params.require(:user).permit(:name, :age, :location, :image)
-    end 
+    ##def user_params
+    ##    params.require(:user).permit(:name, :age, :location, :image)
+    ##end 
     
 
 end

@@ -16,6 +16,10 @@
     height:auto;
     display:inline-block;
   }
+
+  #dog-form-container {
+    padding-top: 50px;
+  }
  /*
   #nav-section {
   border: 1px solid;

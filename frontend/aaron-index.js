@@ -20,6 +20,7 @@ startCardsIndex = () => {
 navBar()
 createCardContainer()
 generateDog()
+
 }
 
 //homepage below
@@ -30,16 +31,10 @@ navBar = () => {
       <a href="#home" class="w3-bar-item w3-button"><b>DOG</b>Finder</a>
       <!-- Float links to the right. Hide them on small screens -->
       <div class="w3-right w3-hide-small">
-        <button class="create-btn">Conjure Dog</button>
-<<<<<<< HEAD
         <a onclick="startHome()" class="w3-bar-item w3-button">Home</a>
-        <a onclick="startCardsIndex()" class="w3-bar-item w3-button">Animals</a>
-        <a onclick="startProfilePage()" class="w3-bar-item w3-button">IDK YET</a>
-=======
-        <a href="#projects" class="w3-bar-item w3-button">Home</a>
-        <a href="#about" class="w3-bar-item w3-button">Animals</a>
-        <a href="#contact" class="w3-bar-item w3-button">IDK YET</a>
->>>>>>> goforMVP
+        <a  onclick="startCardsIndex()" id="card-page" class="w3-bar-item w3-button">Animals</a>
+        <a onclick="startProfilePage()" class="w3-bar-item w3-button">Profile</a>
+        <a id="conjure-dog-btn" class="w3-bar-item w3-button">Conjure Dog</a>
       </div>
     </div>
   </div>
@@ -161,7 +156,6 @@ displaySignUp = () => {
     <div class="form-group">
       <label for="uname">Username:</label>
       <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
-      <input type='file' name='image'/>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>
@@ -183,28 +177,25 @@ handleSignUp = () => {
   const form = document.querySelector('form')
   form.addEventListener('submit', function(e) {
     e.preventDefault()
-    let image = e.target[1].files[0]
+    //let image = e.target[1].files[0]
     let userName = e.target[0].value
     
 
-    //createUser(userName, image)
+    createUser(userName)
    
   }) 
 }
-createUser = (userName, image) => {
+createUser = (userName) => {
   const formData = new FormData()
+  const fileField = document.querySelector('input[type="file"]')
   formData.append('name', userName)
-  formData.append('image', image)
-  
-  const newUser = {
-      name: userName
-  }
+
   const reqObj = {
     method: "POST",
-    headers: {
+    header: {
       'content-type': 'application/json'
     },
-    body: JSON.stringify(newUser)
+    body: JSON.stringify(formData)
   }
   fetch('http://localhost:3000/users', reqObj)
   .then(resp => resp.json())
@@ -213,7 +204,32 @@ createUser = (userName, image) => {
     startCardsIndex()
   })
 }
-//getButtonListOpts.swal-getButtonListOpts.swal-button--confirm
+
+startProfilePage = () => {
+  navBar()
+  header()
+  const userCard = `
+  <div class="w3-card-4">
+  <header class="w3-container w3-blue">
+    <h1>Header</h1>
+  </header>
+  
+  <div class="w3-container">
+    <p>Lorem ipsum...</p>
+  </div>
+  
+  <footer class="w3-container w3-blue">
+    <h5>Footer</h5>
+  </footer>
+  
+  </div>
+  
+  <input type='file' name='image'/>
+  `
+  body.innerHTML = userCard
+
+}
+
 
 displaySignIn = () => {
   const body = document.querySelector('body')
@@ -288,8 +304,33 @@ displaySignIn = () => {
 //startHome()
 
 //card deck page below
+
+
+
 createCardContainer = () => {
     const main = document.querySelector('main')
+    const dogForm = `
+    <div class="w3-card-4">
+    
+    
+    </div
+    <div class="w3-card-4">
+
+    <header class="w3-container">
+      <h1></h1>
+    </header>
+    <br>
+    <br>
+    <div id="dog-form-container" class="w3-container">
+      
+    </div>
+    
+    <footer class="w3-container w3-blue w3-center">
+      <h5>Footer</h5>
+    </footer>
+    
+    </div>`
+    main.innerHTML += dogForm
     const cardContainer = `
     <div class="py-5">
      <div class="container">
@@ -298,9 +339,9 @@ createCardContainer = () => {
      </div>
     </div
     `
-    main.innerHTML = cardContainer
-    const container = document.querySelector('div.row.hidden-md-up')
-
+    main.innerHTML += cardContainer
+    //const container = document.querySelector('div.row.hidden-md-up')
+  console.log(7)
 }
 
 
@@ -311,7 +352,7 @@ createCard = (dog) => {
      <div class="card" >
       <div class="card-block" data-dog="${dog.id}">
        <img class="card-img-top w3-hover-opacity" src="${dog.image}" alt="Card image cap">
-        <div class="card-body">
+        <div class="card-body w3-card-4">
          <p class="card-text">${dog.name} - ${dog.breed}</p>
          <button class="like-btn"><3</button>
          <button class="adopt-btn">Take me home!</button>
@@ -321,7 +362,8 @@ createCard = (dog) => {
     </div>
     `
     cardContainer.innerHTML += card 
-    
+    console.log(9)
+
 }
 
 generateDog = () => {
@@ -332,11 +374,12 @@ generateDog = () => {
                createCard(dog)
                  
             });
-            
+           jakeMain() 
         })
+        console.log(8)
 }
 
-startCardsIndex()
+//startCardsIndex()
 
 
 
