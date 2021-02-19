@@ -8,15 +8,16 @@ class UsersController < ApplicationController
     end
 
     def create 
-        binding.pry
-        user = User.create(params)
-        user.image.attach(params[:image])
         
-        if user.save 
-            render json: user 
-        else 
-            render json: {error: "fill out name to save"}, status: 403
-        end 
+        user = User.create(user_params)
+        #user.image.attach(params[:image])
+        binding.pry
+        render json: user 
+       # if user.save 
+       #     render json: user 
+       # else 
+       #     render json: {error: "fill out name to save"}, status: 403
+       # end 
     end 
 
     # def edit 
@@ -25,21 +26,21 @@ class UsersController < ApplicationController
     # end 
 
     def show
-        user = User.find(params[:id])
+        user = User.find(user_params[:id])
         render json: user, include: [:likes]
     end
   
     def update
-        user = User.find(params[:id])
+        user = User.find(user_params[:id])
         user.update(user_params)
         render json: user
     end
 
     private
 
-    ##def user_params
-    ##    params.require(:user).permit(:name, :age, :location, :image)
-    ##end 
+    def user_params
+        params.require(:user).permit(:name)
+    end 
     
 
 end
