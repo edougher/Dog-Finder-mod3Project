@@ -186,16 +186,18 @@ handleSignUp = () => {
   }) 
 }
 createUser = (userName) => {
-  const formData = new FormData()
-  const fileField = document.querySelector('input[type="file"]')
-  formData.append('name', userName)
-
+  //const formData = new FormData()
+  //const fileField = document.querySelector('input[type="file"]')
+  //formData.append('name', userName)
+  const newName = {
+    name: userName
+  }
   const reqObj = {
     method: "POST",
     header: {
       'content-type': 'application/json'
     },
-    body: JSON.stringify(formData)
+    body: JSON.stringify(newName)
   }
   fetch('http://localhost:3000/users', reqObj)
   .then(resp => resp.json())
