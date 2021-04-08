@@ -186,28 +186,30 @@ handleSignUp = () => {
   }) 
 }
 createUser = (userName) => {
+  user.name =  userName
+  startCardsIndex()
   //const formData = new FormData()
   //const fileField = document.querySelector('input[type="file"]')
   //formData.append('name', userName)
-  const newName = {
-    name: userName
-  }
-  const reqObj = {
-    method: "POST",
-    header: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(newName)
-  }
-  fetch('http://localhost:3000/users', reqObj)
-  .then(resp => resp.json())
-  .then(userData => {
-    console.log(userData)
-    //user.id = userData.id
-    //user.name = userData.name
-    //user.isActive = true
-    startCardsIndex()
-  })
+  //const newName = {
+  //  name: userName
+  //}
+  //const reqObj = {
+  //  method: "POST",
+  //  header: {
+  //    'content-type': 'application/json'
+  //  },
+  //  body: JSON.stringify(newName)
+  //}
+  //fetch('http://localhost:3000/users', reqObj)
+  //.then(resp => resp.json())
+  //.then(userData => {
+  //  console.log(userData)
+  //  //user.id = userData.id
+  //  //user.name = userData.name
+  //  //user.isActive = true
+  //  startCardsIndex()
+  //})
 }
 
 startProfilePage = () => {
@@ -286,10 +288,8 @@ displaySignIn = () => {
       if(userData.some(u => u.name === username)){
         let currentUser = userData.find(user => user.name === username)
         user = currentUser
-        swal("Welcome Back", "success")
+        alert(`Welcome Back, ${username}!`)
         startCardsIndex()
-        
-        //alert(`Welcome Back, ${username}!`)
       }
       else {
         displaySignUp()
