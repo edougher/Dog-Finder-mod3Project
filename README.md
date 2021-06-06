@@ -8,8 +8,8 @@
 
 ![Screen Shot 2021-06-06 at 3 45 29 PM](https://user-images.githubusercontent.com/31377196/120939568-3fc75700-c6de-11eb-8cc3-4b0e24024c9d.png)
 
+![](https://media.giphy.com/media/5MXfNKY3AWG0gt3QHK/giphy.gif)
 
-https://media.giphy.com/media/5MXfNKY3AWG0gt3QHK/giphy.gif
 
 The Rails back-end
  and api 'thedogapi' to seed the database with information, as well as images, of dogs.
