@@ -11,17 +11,21 @@
 ![Screen Shot 2021-06-06 at 3 45 29 PM](https://user-images.githubusercontent.com/31377196/120939568-3fc75700-c6de-11eb-8cc3-4b0e24024c9d.png)
 
 
-Homepage:
+# Homepage:
+
 ![](https://media.giphy.com/media/5MXfNKY3AWG0gt3QHK/giphy.gif)
 
 
-Create a card for a dog by supplying a name, breed, and image url.
+# Create a card for a dog by supplying a name, breed, and image url.
+
 ![](https://media.giphy.com/media/2LBPsCH2ob83yc66yy/giphy.gif)
 
 
-Resources:
-https://thedogapi.com/
-https://github.com/edougher/mod-3-project/blob/main/backend-rails-api/db/seeds.rb
+# Resources:
+
+* https://thedogapi.com/
+
+* https://github.com/edougher/mod-3-project/blob/main/backend-rails-api/db/seeds.rb
 
 
 
