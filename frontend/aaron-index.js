@@ -143,7 +143,7 @@ function carouselFunc() {
     slideIndex++;
     if (slideIndex > x.length) {slideIndex = 1}
     x[slideIndex-1].style.display = "block";
-    setTimeout(carouselFunc, 2500); // Change image every 2.5 seconds
+    setTimeout(carouselFunc, 1000); // Change image every 2.5 seconds
 }
 
 }
