@@ -333,6 +333,7 @@ createCardContainer = () => {
     
     </div>`
     main.innerHTML += dogForm
+    const dogDiv = document.querySelector('#dog-form-container')
     const cardContainer = `
     <div class="py-5">
      <div class="container">
@@ -341,7 +342,7 @@ createCardContainer = () => {
      </div>
     </div
     `
-    main.innerHTML += cardContainer
+    dogDiv.innerHTML += cardContainer
     //const container = document.querySelector('div.row.hidden-md-up')
   console.log(7)
 }
